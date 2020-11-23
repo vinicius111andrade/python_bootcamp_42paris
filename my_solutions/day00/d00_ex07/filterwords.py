@@ -17,32 +17,28 @@ def is_int(arg):
   except:
     return False
 
-def give_word_len(arg):
-	i = 0
-	while (arg[i].isalpha()):
-		i += 1
-	return (i)
-
-def give_new_word(word_len, string):
-	new_word = ""
-	i = 0
-	while i < word_len:
-		new_word += string[i]
-	return (new_word)
+def is_letter(arg):
+	if arg.isalpha():
+		return True
+	else:
+		return False
 
 def filterwords(string, min_len):
 	i = 0
-	word_len = 0
 	new_word = ""
 	list_of_words = []
 	while i < len(string):
-		while (not string[i].isalpha()):
+		while (not is_letter(string[i])):
 			i += 1
-		print(i)
-		word_len = give_word_len(string[i:])
-		new_word = give_new_word(word_len, string[i:])
-		list_of_words.append(new_word)
-		i += word_len
+		while (i < len(string) and is_letter(string[i])):
+			new_word += string[i]
+			if (i < len(string)):
+				i += 1
+		if len(new_word) >= min_len:
+			list_of_words.append(new_word)
+			new_word = ""
+		else:
+			new_word = ""
 	return (list_of_words)
 
 def main():
@@ -51,7 +47,7 @@ def main():
 	elif is_int(sys.argv[1]) or not is_int(sys.argv[2]):
 		print("ERROR")
 	else:
-		list_of_words = filterwords(sys.argv[1], sys.argv[2])
+		list_of_words = filterwords(sys.argv[1], int(sys.argv[2]))
 		print(list_of_words)
 
 main()
