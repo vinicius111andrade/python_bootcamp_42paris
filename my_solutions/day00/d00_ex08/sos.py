@@ -90,7 +90,6 @@ def translate_to_morse(arg_list):
 	new_word = ""
 	char = ""
 	morse_chars = ""
-#need to add a space between morse chars
 	for string in arg_list:
 		str_len = len(string)
 		i = 0
@@ -100,10 +99,11 @@ def translate_to_morse(arg_list):
 			else:
 				while i < str_len and string[i].isalnum():
 					char = string[i]
-					morse_chars = int_morse_dict[char]
+					morse_chars = int_morse_dict[char] + " "
 					for m_char in morse_chars:
 						new_word += m_char
 					i += 1
+			if new_word != "":
 				translated_list.append(new_word)
 				new_word = ""
 	return translated_list
@@ -115,14 +115,10 @@ def output_translation(words_list):
 	while i < list_len:
 		if i == 0:
 			print(words_list[i], sep='', end='')
-		elif i == list_len - 1:
-			print(words_list[i], sep='', end='')
 		else:
 			print(" / ", sep='', end='')
 			print(words_list[i], sep='', end='')
-			print(" / ", sep='', end='')
 		i += 1
-
 
 def main():
 	if len(sys.argv) == 1:
