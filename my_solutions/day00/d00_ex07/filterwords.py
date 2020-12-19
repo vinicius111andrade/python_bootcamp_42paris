@@ -11,11 +11,11 @@ The program will accept only two parameters: a string, and an integer n.
 import sys
 
 def is_int(arg):
-  try:
-    int(arg)
-    return True
-  except:
-    return False
+	try:
+		int(arg)
+		return True
+	except:
+		return False
 
 def is_letter(arg):
 	if arg.isalpha():
